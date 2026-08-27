@@ -9,3 +9,9 @@ This repository is currently empty scaffolding: the only file is `README.md`, co
 When code is added to this repository, update this file to cover:
 - Build, lint, and test commands (including how to run a single test)
 - High-level architecture and structure
+
+## Workflow: finishing a task
+
+Every time a task is finished:
+1. Commit and push the changes to GitHub.
+2. Update `README.md` with the plan/progress so far, so completed steps and next steps aren't lost between sessions.
