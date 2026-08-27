@@ -1,0 +1,38 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [claude/claude-md-docs-ckqpxl, main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.47.1'
+          channel: 'stable'
+
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+      - run: flutter build apk --release
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stack-rush-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Publish downloadable release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest-apk
+          name: Stack Rush (latest build)
+          body: Automatically built from the latest commit. Download app-release.apk below and install it on your Android phone.
+          files: build/app/outputs/flutter-apk/app-release.apk
