@@ -29,6 +29,7 @@ class StackRushGame extends FlameGame with TapCallbacks {
     required this.audio,
     required this.saveSystem,
     required this.onGameOver,
+    // ignore: prefer_initializing_formals
   }) : _skinColors = skinColors;
 
   List<Color> _skinColors;
