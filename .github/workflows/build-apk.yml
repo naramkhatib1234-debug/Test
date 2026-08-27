@@ -26,14 +26,14 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: stack-rush-apk
+          name: star-rush-apk
           path: build/app/outputs/flutter-apk/*.apk
 
       - name: Publish downloadable release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: latest-apk
-          name: Stack Rush (latest build)
+          name: Star Rush (latest build)
           body: |
             Automatically built from the latest commit.
 

@@ -53,7 +53,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xFF232A6E), Color(0xFF3D7FD9), Color(0xFF6FB3F2)],
+            colors: [Color(0xFF0B1240), Color(0xFF1B2A6B), Color(0xFF3A1B6B)],
           ),
         ),
         child: SafeArea(
@@ -81,7 +81,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                 Column(
                   children: [
                     Text(
-                      'STACK',
+                      'STAR',
                       style: TextStyle(
                         fontSize: 56,
                         fontWeight: FontWeight.w900,
@@ -101,7 +101,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                       style: TextStyle(
                         fontSize: 56,
                         fontWeight: FontWeight.w900,
-                        color: Color(0xFFFFC24B),
+                        color: Color(0xFFC24BFF),
                         letterSpacing: 10,
                       ),
                     ),
@@ -116,8 +116,8 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                 ),
                 const SizedBox(height: 16),
                 GameButton(
-                  label: 'SKINS',
-                  icon: Icons.palette_rounded,
+                  label: 'SHIPS',
+                  icon: Icons.rocket_launch_rounded,
                   filled: false,
                   onPressed: _openSkins,
                 ),

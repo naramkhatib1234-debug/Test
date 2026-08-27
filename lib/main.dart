@@ -19,17 +19,17 @@ Future<void> main() async {
       statusBarIconBrightness: Brightness.light,
     ),
   );
-  runApp(const StackRushApp());
+  runApp(const StarRushApp());
 }
 
-class StackRushApp extends StatefulWidget {
-  const StackRushApp({super.key});
+class StarRushApp extends StatefulWidget {
+  const StarRushApp({super.key});
 
   @override
-  State<StackRushApp> createState() => _StackRushAppState();
+  State<StarRushApp> createState() => _StarRushAppState();
 }
 
-class _StackRushAppState extends State<StackRushApp> {
+class _StarRushAppState extends State<StarRushApp> {
   SaveSystem? _save;
   AudioSystem? _audio;
 
@@ -55,12 +55,12 @@ class _StackRushAppState extends State<StackRushApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Stack Rush',
+      title: 'Star Rush',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
         fontFamily: 'Roboto',
-        colorSchemeSeed: const Color(0xFF3D7FD9),
+        colorSchemeSeed: const Color(0xFF6A1B9A),
         brightness: Brightness.dark,
       ),
       home: _save == null || _audio == null
@@ -80,12 +80,12 @@ class _SplashScreen extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [Color(0xFF232A6E), Color(0xFF3D7FD9), Color(0xFF6FB3F2)],
+          colors: [Color(0xFF0B1240), Color(0xFF1B2A6B), Color(0xFF3A1B6B)],
         ),
       ),
       child: const Center(
         child: Text(
-          'STACK RUSH',
+          'STAR RUSH',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w900,

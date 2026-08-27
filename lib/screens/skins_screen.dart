@@ -64,7 +64,7 @@ class _SkinsScreenState extends State<SkinsScreen> {
                       icon: const Icon(Icons.arrow_back, color: Colors.white),
                     ),
                     const Text(
-                      'SKINS',
+                      'SHIPS',
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w900,
@@ -154,6 +154,11 @@ class _SkinTile extends StatelessWidget {
                     offset: const Offset(0, 6),
                   ),
                 ],
+              ),
+              child: const Icon(
+                Icons.rocket_launch_rounded,
+                color: Colors.white,
+                size: 30,
               ),
             ),
             const SizedBox(height: 12),

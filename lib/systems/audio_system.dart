@@ -16,8 +16,9 @@ class AudioSystem {
   bool _musicStarted = false;
 
   static const _sfxFiles = [
-    'place.wav',
-    'perfect.wav',
+    'shoot.wav',
+    'explosion.wav',
+    'hit.wav',
     'combo.wav',
     'gameover.wav',
   ];
@@ -30,9 +31,11 @@ class AudioSystem {
     }
   }
 
-  void playPlace() => _playSfx('place.wav', 0.6);
+  void playShoot() => _playSfx('shoot.wav', 0.35);
 
-  void playPerfect() => _playSfx('perfect.wav', 0.8);
+  void playExplosion() => _playSfx('explosion.wav', 0.7);
+
+  void playHit() => _playSfx('hit.wav', 0.7);
 
   void playCombo() => _playSfx('combo.wav', 0.5);
 

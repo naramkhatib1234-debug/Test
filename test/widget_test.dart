@@ -9,19 +9,19 @@ void main() {
   });
 
   testWidgets('App boots to the main menu with default stats', (tester) async {
-    await tester.pumpWidget(const StackRushApp());
+    await tester.pumpWidget(const StarRushApp());
     await tester.pumpAndSettle();
 
-    expect(find.text('STACK'), findsOneWidget);
+    expect(find.text('STAR'), findsOneWidget);
     expect(find.text('RUSH'), findsOneWidget);
     expect(find.text('PLAY'), findsOneWidget);
-    expect(find.text('SKINS'), findsOneWidget);
+    expect(find.text('SHIPS'), findsOneWidget);
     expect(find.text('SETTINGS'), findsOneWidget);
     expect(find.text('0'), findsNWidgets(2)); // best score and coins start at 0
   });
 
   testWidgets('Play button opens the game screen', (tester) async {
-    await tester.pumpWidget(const StackRushApp());
+    await tester.pumpWidget(const StarRushApp());
     await tester.pumpAndSettle();
 
     await tester.tap(find.text('PLAY'));

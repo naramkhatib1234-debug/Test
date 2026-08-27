@@ -1,7 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
-import '../game/stack_rush_game.dart';
+import '../game/star_rush_game.dart';
 import '../models/game_result.dart';
 import '../systems/audio_system.dart';
 import '../systems/save_system.dart';
@@ -19,7 +19,7 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
-  late StackRushGame _game;
+  late StarRushGame _game;
   GameResult? _result;
 
   @override
@@ -30,8 +30,8 @@ class _GameScreenState extends State<GameScreen> {
 
   void _startNewGame() {
     final skin = SkinCatalog.byId(widget.save.selectedSkinId);
-    _game = StackRushGame(
-      skinColors: skin.colors,
+    _game = StarRushGame(
+      shipColors: skin.colors,
       audio: widget.audio,
       saveSystem: widget.save,
       onGameOver: (result) {
@@ -96,6 +96,24 @@ class _GameScreenState extends State<GameScreen> {
                               fontWeight: FontWeight.w800,
                               fontSize: 15,
                               letterSpacing: 1,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      ValueListenableBuilder<int>(
+                        valueListenable: _game.health,
+                        builder: (context, health, _) => Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: List.generate(
+                            3,
+                            (i) => Padding(
+                              padding: const EdgeInsets.only(left: 4),
+                              child: Icon(
+                                i < health ? Icons.favorite : Icons.favorite_border,
+                                color: const Color(0xFFFF6B6B),
+                                size: 20,
+                              ),
                             ),
                           ),
                         ),

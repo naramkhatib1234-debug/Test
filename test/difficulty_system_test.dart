@@ -2,23 +2,32 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:stack_rush/systems/difficulty_system.dart';
 
 void main() {
-  test('speed increases gradually and never decreases', () {
-    double previous = DifficultySystem.speedFor(0);
-    for (var blocks = 1; blocks <= 100; blocks++) {
-      final speed = DifficultySystem.speedFor(blocks);
+  test('spawn interval shortens as score grows and never undershoots the floor', () {
+    double previous = DifficultySystem.spawnIntervalFor(0);
+    for (var score = 10; score <= 2000; score += 10) {
+      final interval = DifficultySystem.spawnIntervalFor(score);
+      expect(interval, lessThanOrEqualTo(previous));
+      expect(interval, greaterThanOrEqualTo(0.38));
+      previous = interval;
+    }
+  });
+
+  test('enemy speed increases gradually and is clamped to a sane maximum', () {
+    double previous = DifficultySystem.enemySpeedFor(0);
+    for (var score = 10; score <= 2000; score += 10) {
+      final speed = DifficultySystem.enemySpeedFor(score);
       expect(speed, greaterThanOrEqualTo(previous));
+      expect(speed, lessThanOrEqualTo(220));
       previous = speed;
     }
   });
 
-  test('speed is clamped to a sane maximum', () {
-    expect(DifficultySystem.speedFor(10000), lessThanOrEqualTo(320));
-  });
-
-  test('movement variation unlocks only after enough blocks', () {
-    expect(DifficultySystem.useWideSwing(0), isFalse);
-    expect(DifficultySystem.useWideSwing(12), isTrue);
-    expect(DifficultySystem.useDirectionJitter(0), isFalse);
-    expect(DifficultySystem.useDirectionJitter(20), isTrue);
+  test('enemy behavior variety unlocks only after enough score', () {
+    expect(DifficultySystem.useZigzagEnemies(0), isFalse);
+    expect(DifficultySystem.useZigzagEnemies(40), isTrue);
+    expect(DifficultySystem.useShootingEnemies(0), isFalse);
+    expect(DifficultySystem.useShootingEnemies(90), isTrue);
+    expect(DifficultySystem.useTankEnemies(0), isFalse);
+    expect(DifficultySystem.useTankEnemies(150), isTrue);
   });
 }

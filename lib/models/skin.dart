@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Defines the visual style applied to stacked blocks.
+/// Defines the visual style applied to the player's ship.
 class Skin {
   const Skin({
     required this.id,
@@ -12,7 +12,7 @@ class Skin {
   final String id;
   final String name;
 
-  /// Gradient stops used to paint every block rendered with this skin.
+  /// Gradient stops used to paint the ship (and its bullets) with this skin.
   final List<Color> colors;
 
   /// Coin cost to unlock. Zero means unlocked from the start.

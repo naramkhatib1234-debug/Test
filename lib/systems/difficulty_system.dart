@@ -1,19 +1,33 @@
-/// Derives block speed and horizontal-movement variation from the current
+/// Derives enemy spawn rate, speed, and behavior variety from the current
 /// score, so the game gradually ramps up instead of spiking in difficulty.
 class DifficultySystem {
-  static const double _baseSpeed = 90;
-  static const double _maxSpeed = 320;
-  static const double _speedRampPerBlock = 6.5;
+  static const double _baseSpawnInterval = 1.15;
+  static const double _minSpawnInterval = 0.38;
+  static const double _spawnRampPerPoint = 0.006;
 
-  /// Horizontal speed (px/s) for the moving block at the given [blocksPlaced].
-  static double speedFor(int blocksPlaced) {
-    final speed = _baseSpeed + blocksPlaced * _speedRampPerBlock;
-    return speed.clamp(_baseSpeed, _maxSpeed);
+  static const double _baseEnemySpeed = 70;
+  static const double _maxEnemySpeed = 220;
+  static const double _speedRampPerPoint = 0.9;
+
+  /// Seconds between enemy spawns at the given [score].
+  static double spawnIntervalFor(int score) {
+    final interval = _baseSpawnInterval - score * _spawnRampPerPoint;
+    return interval.clamp(_minSpawnInterval, _baseSpawnInterval);
   }
 
-  /// Occasionally the spawn side / amplitude gets extra variation once the
-  /// player has proven they can handle the base pattern.
-  static bool useWideSwing(int blocksPlaced) => blocksPlaced >= 12;
+  /// Downward speed (px/s) for a freshly spawned enemy at the given [score].
+  static double enemySpeedFor(int score) {
+    final speed = _baseEnemySpeed + score * _speedRampPerPoint;
+    return speed.clamp(_baseEnemySpeed, _maxEnemySpeed);
+  }
 
-  static bool useDirectionJitter(int blocksPlaced) => blocksPlaced >= 20;
+  /// Enemies start weaving side-to-side once the player has proven they can
+  /// handle a straight descent.
+  static bool useZigzagEnemies(int score) => score >= 40;
+
+  /// Enemies start firing back once the player is further in.
+  static bool useShootingEnemies(int score) => score >= 90;
+
+  /// Tougher (multi-hit) enemies show up later still.
+  static bool useTankEnemies(int score) => score >= 150;
 }
